@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "pygame-scene"
+version = "0.1.0"
+description = ""
+authors = ["yuang <a3305587173@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pygame = "^2.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
