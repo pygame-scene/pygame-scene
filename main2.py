@@ -3,7 +3,7 @@
 import pygame
 import sys
 
-import scene
+import scene_2 as scene
 
 pygame.init()
 
@@ -20,6 +20,7 @@ class MainScreen:
         self.start = pygame.image.load('start.png')
 
     def run_game(self):
+        print('run_game')
         while self.scene.game_run:
             self.screen.fill((135, 180, 255))
             self.screen.blit(self.start, (400, 300))
@@ -33,7 +34,7 @@ class MainScreen:
                     if 400 < pos[0] < 400 + 50 and 300 < pos[1] < 300 + 50:
                         print(self.a)
                         self.scene.set_scene('game', a='game')
-                        self.scene.run_scene()
+                        scene_status = 'next'
 
             pygame.display.update()
             self.clock.tick(self.FPS)
@@ -64,16 +65,16 @@ class GameScreen:
                     if 400 < pos[0] < 400 + 50 and 300 < pos[1] < 300 + 50:
                         print(self.a)
                         self.scene.set_scene('main', a='main')
-                        self.scene.run_scene()
+                        scene_status = 'next'
 
             pygame.display.update()
             self.clock.tick(self.FPS)
 
 
 if __name__ == '__main__':
-    Scene_Manager = scene.Scene_Manager()
+    Scene_Manager = scene.Scene_Manager_2()
     Scene_Manager.add_scene('main', MainScreen)
     Scene_Manager.add_scene('game', GameScreen)
     # print(Scene_Manager.scene_list)
     Scene_Manager.set_scene('main', a='main')  # 命名参数必须和类内 kwargs.get 方法访问时使用的键名称一致
-    Scene_Manager.run_scene()
+    scene_status = 'next'

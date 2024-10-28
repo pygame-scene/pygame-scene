@@ -2,7 +2,7 @@
 name = "pygame-scene"
 version = "0.1.0"
 description = ""
-authors = ["yuang <a3305587173@outlook.com>"]
+authors = ["yang <a3305587173@outlook.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

@@ -1,9 +1,12 @@
 import pygame
+import sys
+
+from threading import Thread
 
 pygame.init()
 
 
-class Scene_Manager:
+class Scene_Manager_2:
     def __init__(self, screen_size=(800, 600), screen_caption='new scene', FPS=60):
         self.screen = pygame.display.set_mode(screen_size)
         pygame.display.set_caption(screen_caption)
@@ -14,6 +17,17 @@ class Scene_Manager:
 
         self.scene_list = {}
         self.scenes = None
+
+        global scene_status
+        scene_status = 'None'
+
+        t = Thread(target=self.run_scene)
+        t.start()
+
+
+    def stop_game(self):
+        self.game_run = False
+        sys.exit()
 
     def set_screen_size(self, width, height):
         self.screen = pygame.display.set_mode((width, height))
@@ -50,4 +64,9 @@ class Scene_Manager:
         """
         调用场景运行
         """
-        self.scenes.run_game()
+        global scene_status
+        while self.game_run:
+            if scene_status == 'next':
+                self.scenes.run_game()
+                scene_status = 'None'
+
